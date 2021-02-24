@@ -96,7 +96,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if err==nil {
-		w.Header().Set("Status","http.StatusCreated")
+		w.Header().Set("Status",http.StatusCreated)
 	}
 
 	json.NewEncoder(w).Encode(result)
