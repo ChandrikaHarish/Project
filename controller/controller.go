@@ -17,7 +17,7 @@ import (
 //Connection mongoDB with helper class
 var collection = helper.ConnectDB()
 
-func getUsers(w http.ResponseWriter, r *http.Request) {
+func GetUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	// we created user array
@@ -57,7 +57,7 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(users) // encode similar to serialize process.
 }
 
-func getUser(w http.ResponseWriter, r *http.Request) {
+func GetUser(w http.ResponseWriter, r *http.Request) {
 	// set header.
 	w.Header().Set("Content-Type", "application/json")
 
@@ -80,7 +80,7 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
-func createUser(w http.ResponseWriter, r *http.Request) {
+func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	var user models.User
@@ -99,7 +99,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 }
 
-func deleteUser(w http.ResponseWriter, r *http.Request) {
+func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	// Set header
 	w.Header().Set("Content-Type", "application/json")
 
