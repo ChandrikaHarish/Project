@@ -95,7 +95,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		helper.GetError(err, w)
 		return
 	}
-	else {
+	if err==nil {
 		w.Header().Set("Status","http.StatusCreated")
 	}
 
