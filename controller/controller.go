@@ -3,6 +3,7 @@ package controller
 import (
 	"context"
 	"encoding/json"
+	"strconv"
 
 	"log"
 	"net/http"
@@ -96,7 +97,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if err==nil {
-		w.Header().Set("Status",http.StatusCreated)
+		w.Header().Set("Status",strconv.Itoa(http.StatusCreated))
 	}
 
 	json.NewEncoder(w).Encode(result)
