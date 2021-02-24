@@ -82,7 +82,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-
+	
 	var user models.User
 
 	// we decode our body request params
@@ -94,6 +94,9 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		helper.GetError(err, w)
 		return
+	}
+	else {
+		w.Header().Set("Status","http.StatusCreated")
 	}
 
 	json.NewEncoder(w).Encode(result)
