@@ -116,12 +116,14 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	// prepare filter.
 	filter := bson.M{"_id": id}
 
-	deleteResult, err := collection.DeleteOne(context.TODO(), filter)
+	_, err := collection.DeleteOne(context.TODO(), filter)
 
 	if err != nil {
 		helper.GetError(err, w)
 		return
 	}
-
-	json.NewEncoder(w).Encode(deleteResult)
+	if err==nil {
+		w.Header().Set("Status",strconv.Itoa(http.StatusNoContent))
+	}
+	
 }
