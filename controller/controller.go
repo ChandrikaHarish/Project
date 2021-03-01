@@ -116,7 +116,7 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	// prepare filter.
 	filter := bson.M{"_id": id}
 
-	_, err := collection.DeleteOne(context.TODO(), filter)
+	_,err = collection.DeleteOne(context.TODO(), filter)
 
 	if err != nil {
 		helper.GetError(err, w)
