@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 	
-	"github.com/joho/godotenv"
+	//"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -19,10 +19,8 @@ func ConnectDB() *mongo.Collection {
 	//config := GetConfiguration()
 	uri := os.Getenv("DB_URI")
 	// Set client options
-	clientOptions, err := mongo.NewClient(options.Client().ApplyURI(uri))
-	if err != nil {
-		return nil, err
-	}
+	clientOptions:= mongo.NewClient(options.Client().ApplyURI(uri))
+	
 	//clientOptions := options.Client().ApplyURI(config.ConnectionString)
 
 	// Connect to MongoDB
