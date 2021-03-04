@@ -55,6 +55,12 @@ func GetError(err error, w http.ResponseWriter) {
 	w.Write(message)
 }
 
+// Configuration model
+type Configuration struct {
+	Port             string
+	ConnectionString string
+}
+
 // GetConfiguration method basically populate configuration information from .env and return Configuration model
 func GetConfiguration() Configuration {
 	err := godotenv.Load("./.env")
