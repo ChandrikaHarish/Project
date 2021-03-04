@@ -15,9 +15,14 @@ import (
 // ConnectDB : This is helper function to connect mongoDB
 // If you want to export your function. You must to start upper case function name. Otherwise you won't see your function when you import that on other class.
 func ConnectDB() *mongo.Collection {
-	config := GetConfiguration()
+	//config := GetConfiguration()
+	uri := os.Getenv("DB_URI")
 	// Set client options
-	clientOptions := options.Client().ApplyURI(config.ConnectionString)
+	clientOptions, err := mongo.NewClient(options.Client().ApplyURI(uri))
+	if err != nil {
+		return nil, err
+	}
+	//clientOptions := options.Client().ApplyURI(config.ConnectionString)
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
@@ -54,7 +59,7 @@ func GetError(err error, w http.ResponseWriter) {
 	w.WriteHeader(response.StatusCode)
 	w.Write(message)
 }
-
+/*
 // Configuration model
 type Configuration struct {
 	Port             string
@@ -76,3 +81,4 @@ func GetConfiguration() Configuration {
 
 	return configuration
 }
+*/
