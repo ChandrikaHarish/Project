@@ -19,7 +19,7 @@ func ConnectDB() *mongo.Collection {
 	//config := GetConfiguration()
 	uri := os.Getenv("DB_URI")
 	// Set client options
-	clientOptions:= mongo.NewClient(options.Client().ApplyURI(uri))
+	clientOptions:= options.Client().ApplyURI(uri)
 	
 	//clientOptions := options.Client().ApplyURI(config.ConnectionString)
 
