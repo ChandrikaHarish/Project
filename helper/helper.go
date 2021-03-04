@@ -6,7 +6,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
+	
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -52,4 +53,20 @@ func GetError(err error, w http.ResponseWriter) {
 
 	w.WriteHeader(response.StatusCode)
 	w.Write(message)
+}
+
+// GetConfiguration method basically populate configuration information from .env and return Configuration model
+func GetConfiguration() Configuration {
+	err := godotenv.Load("./.env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	configuration := Configuration{
+		os.Getenv("PORT"),
+		os.Getenv("CONNECTION_STRING"),
+	}
+
+	return configuration
 }
